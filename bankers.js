@@ -12,7 +12,6 @@ function validation(){
     let count2 = 0;
     for(var i=1; i<=5; i++){
       for(var j=1; j<=3; j++){
-        
         if(document.getElementById('a'+i+j).value<0 || document.getElementById('a'+i+j).value==''){
           count++;
         }
@@ -82,17 +81,35 @@ function validation(){
     var x = 0;
     var y = 0;
     var z = 0;
-    document.getElementById('calc1').innerHTML = '&nbsp Calculating the Available Matrix....'+'<br/>'+'Available[n] = Total no. of instances - (Allocation[0][n] + Allocation[1][n] + Allocation[2][n] + Allocation[3][n] + Allocation[4][n])'+'<br/>';
-    document.getElementById('calc1').innerHTML += 'Available[0] = '+a+' - ';
-    document.getElementById('calc2').innerHTML = 'Available[1] = '+b+' - ';
-    document.getElementById('calc3').innerHTML = 'Available[2] = '+c+' - ';
+    document.getElementById('calc1').innerHTML = '&nbsp Calculation for available matrix:'+'<br/>';
+    document.getElementById('calc1').innerHTML += 'Available instance of A = '+a+' - ';
+    document.getElementById('calc2').innerHTML = 'Available instance of B = '+b+' - ';
+    document.getElementById('calc3').innerHTML = 'Available instance of C = '+c+' - ';
     for(var i=1; i<=5; i++){
         var x = x + parseInt(document.getElementById('a'+i+'1').value);
-        document.getElementById('calc1').innerHTML += parseInt(document.getElementById('a'+i+'1').value); if(i<5){document.getElementById('calc1').innerHTML += '+';}else{document.getElementById('calc1').innerHTML += ' = '}
+        document.getElementById('calc1').innerHTML += parseInt(document.getElementById('a'+i+'1').value); 
+        if(i<5){
+          document.getElementById('calc1').innerHTML += ' + ';
+        }
+        else{
+          document.getElementById('calc1').innerHTML += ' = '
+        }
         var y = y + parseInt(document.getElementById('a'+i+'2').value);
-        document.getElementById('calc2').innerHTML += parseInt(document.getElementById('a'+i+'1').value); if(i<5){document.getElementById('calc2').innerHTML += '+';}else{document.getElementById('calc2').innerHTML += ' = '}
+        document.getElementById('calc2').innerHTML += parseInt(document.getElementById('a'+i+'1').value); 
+        if(i<5){
+          document.getElementById('calc2').innerHTML += '+';
+        }
+        else{
+          document.getElementById('calc2').innerHTML += ' = '
+        }
         var z = z + parseInt(document.getElementById('a'+i+'3').value);
-        document.getElementById('calc3').innerHTML += parseInt(document.getElementById('a'+i+'1').value); if(i<5){document.getElementById('calc3').innerHTML += '+';}else{document.getElementById('calc3').innerHTML += ' = '}
+        document.getElementById('calc3').innerHTML += parseInt(document.getElementById('a'+i+'1').value); 
+        if(i<5){
+          document.getElementById('calc3').innerHTML += '+';
+        }
+        else{
+          document.getElementById('calc3').innerHTML += ' = '
+        }
     }
     document.getElementById('av11').value = a-x;
     document.getElementById('calc1').innerHTML += a-x;
@@ -108,7 +125,7 @@ function validation(){
   
   function find_need(){
     // find_avai();
-    document.getElementById('calc1').innerHTML = '&nbsp Calculating the Need Matrix....'+'<br/>'+'Need[n][n] = Max[n][n] - Allocation[n][n]'+'<br/>';
+    document.getElementById('calc1').innerHTML = 'Calculation for Need Matrix:'+'<br/>';
     document.getElementById('calc2').innerHTML = '';
     document.getElementById('calc3').innerHTML = '';
     document.getElementById('calc4').innerHTML = '';
@@ -124,18 +141,16 @@ function validation(){
   
   
   function find_sequence(){
-    // find_avai();
-    // find_need();
     var dp = 0;
     var checker = 0;
     var q = 1;
     var k=1;
-    document.getElementById('calc0').innerHTML = '&nbsp Calculating the Final Order....'+'<br/>';
+    document.getElementById('calc0').innerHTML = '&nbsp Calculation of final order'+'<br/>';
     for(var j=1; j<=5; j++){
       x1 = parseInt(document.getElementById('av11').value);
       x2 = parseInt(document.getElementById('av12').value);
       x3 = parseInt(document.getElementById('av13').value);
-      document.getElementById('calc'+j).innerHTML = 'Step'+j+':&nbsp&nbsp'+'Available Matrix = '+x1+', '+x2+', '+x3;
+      document.getElementById('calc'+j).innerHTML = 'Step'+j+':&nbsp&nbsp'+'Available instance = '+x1+', '+x2+', '+x3 +'<br/>';
       for(var i=k; i<=5; i++){
         var ex1 = parseInt(document.getElementById('a'+i+'1').value);
         var ex2 = parseInt(document.getElementById('a'+i+'2').value);
@@ -145,7 +160,7 @@ function validation(){
             document.getElementById('p'+q).value = 'P'+i;
             document.getElementById('calc'+j).innerHTML += '&nbsp&nbsp As Need['+(i)+'] = ( '+document.getElementById('n'+i+'1').value+', '+document.getElementById('n'+i+'2').value+', '
             +document.getElementById('n'+i+'3').value+' ) < Available = ( '+x1+', '+x2+', '+x3
-            +' ) => Process P'+i+' is selected. And New Available Matrix is ( '+document.getElementById('av11').value+', '+document.getElementById('av12').value+', '+document.getElementById('av13').value+' ) + ( '+document.getElementById('a'+i+'1').value+', '+document.getElementById('a'+i+'2').value+', '
+            +' ) => Process P'+i+' is selected.'+'<br/>'+'And New Available Matrix is ( '+document.getElementById('av11').value+', '+document.getElementById('av12').value+', '+document.getElementById('av13').value+' ) + ( '+document.getElementById('a'+i+'1').value+', '+document.getElementById('a'+i+'2').value+', '
             +document.getElementById('a'+i+'3').value+' ) = ';
             document.getElementById('av11').value = parseInt(document.getElementById('av11').value) + parseInt(document.getElementById('a'+i+'1').value);
             document.getElementById('av12').value = parseInt(document.getElementById('av12').value) + parseInt(document.getElementById('a'+i+'2').value);
