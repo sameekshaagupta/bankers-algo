@@ -141,10 +141,10 @@ function validation(){
   
   
   function find_sequence(){
-    var dp = 0;
-    var checker = 0;
-    var q = 1;
-    var k=1;
+    var dp = 0;//updated if process cannot be allocated resources due to insufficient availability.(else condn)
+    var checker = 0;//helps in determining if a deadlock situation has occurred.
+    var q = 1;//the position where the process ID (e.g., 'P1', 'P2', etc.) will be inserted in the HTML document
+    var k=1;//the starting point for the next iteration of process allocation.
     document.getElementById('calc0').innerHTML = '&nbsp Calculation of final order'+'<br/>';
     for(var j=1; j<=5; j++){
       x1 = parseInt(document.getElementById('av11').value);
